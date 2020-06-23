@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import DownIcon from 'mdi-react/ChevronDownIcon';
 import { Collapse } from 'reactstrap';
 import TopbarMenuLink from './TopbarMenuLink';
+import { logOut } from '../../LogIn/components/UserFunction';
 
 const Ava = `${process.env.PUBLIC_URL}/img/ava.png`;
 
@@ -16,6 +17,14 @@ export default class TopbarProfile extends PureComponent {
   toggle = () => {
     this.setState(prevState => ({ collapse: !prevState.collapse }));
   };
+
+  handelLogout = () => {
+    // eslint-disable-next-line react/prop-types
+    const { history } = this.props;
+    logOut();
+    history.push('/log_in');
+  };
+
 
   render() {
     const { collapse } = this.state;
@@ -33,7 +42,7 @@ export default class TopbarProfile extends PureComponent {
             <TopbarMenuLink title="Page one" icon="list" path="/pages/one" />
             <TopbarMenuLink title="Page two" icon="inbox" path="/pages/two" />
             <div className="topbar__menu-divider" />
-            <TopbarMenuLink title="Log Out" icon="exit" path="/" />
+            <TopbarMenuLink title="Log Out" icon="exit" path="/" onClick={this.handelLogout} />
           </div>
         </Collapse>
       </div>

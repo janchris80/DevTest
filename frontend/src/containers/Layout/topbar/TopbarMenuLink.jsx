@@ -7,13 +7,17 @@ export default class TopbarMenuLinks extends PureComponent {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
+    // eslint-disable-next-line react/require-default-props
+    onClick: PropTypes.func,
   };
 
   render() {
-    const { title, icon, path } = this.props;
+    const {
+      title, icon, path, onClick,
+    } = this.props;
 
     return (
-      <Link className="topbar__link" to={path}>
+      <Link className="topbar__link" to={path} onClick={onClick}>
         <span className={`topbar__link-icon lnr lnr-${icon}`} />
         <p className="topbar__link-title">{title}</p>
       </Link>
